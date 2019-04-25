@@ -90,15 +90,15 @@ resource "aws_network_acl_rule" "public_all_ephemeral_udp_egress" {
 }
 
 resource "aws_network_acl_rule" "public_custom" {
-  count = var.nacl_allow_public_custom != null ? length(var.nacl_allow_public_custom) : 0
+  count = var.nacl_public_custom != null ? length(var.nacl_public_custom) : 0
 
   network_acl_id = aws_network_acl.public.id
 
-  rule_number = var.nacl_allow_public_custom[count.index].rule_number
-  egress = var.nacl_allow_public_custom[count.index].egress
-  protocol = var.nacl_allow_public_custom[count.index].protocol
-  rule_action = var.nacl_allow_public_custom[count.index].rule_action
-  cidr_block = var.nacl_allow_public_custom[count.index].cidr_block
-  from_port = var.nacl_allow_public_custom[count.index].from_port
-  to_port = var.nacl_allow_public_custom[count.index].to_port
+  rule_number = var.nacl_public_custom[count.index].rule_number
+  egress = var.nacl_public_custom[count.index].egress
+  protocol = var.nacl_public_custom[count.index].protocol
+  rule_action = var.nacl_public_custom[count.index].rule_action
+  cidr_block = var.nacl_public_custom[count.index].cidr_block
+  from_port = var.nacl_public_custom[count.index].from_port
+  to_port = var.nacl_public_custom[count.index].to_port
 }
