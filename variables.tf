@@ -9,13 +9,13 @@ variable "vpc_cidr_block" {
 }
 
 variable "vpc_enable_dns_support" {
-  type        = string
+  type        = bool
   description = "Enable VPC DNS resolver"
   default     = true
 }
 
 variable "vpc_enable_dns_hostnames" {
-  type        = string
+  type        = bool
   description = "Enable VPC DNS hostname resolution"
   default     = true
 }
@@ -133,7 +133,7 @@ variable "nacl_block_public_to_secure" {
   default = false
 }
 
-variable "nacl_allow_public_custom" {
+variable "nacl_public_custom" {
   type = list(object({
     rule_number = number,
     egress = bool,
@@ -147,7 +147,7 @@ variable "nacl_allow_public_custom" {
   default = null
 }
 
-variable "nacl_allow_private_custom" {
+variable "nacl_private_custom" {
   type = list(object({
     rule_number = number,
     egress = bool,
@@ -161,7 +161,7 @@ variable "nacl_allow_private_custom" {
   default = null
 }
 
-variable "nacl_allow_secure_custom" {
+variable "nacl_secure_custom" {
   type = list(object({
     rule_number = number,
     egress = bool,
@@ -179,4 +179,5 @@ variable "nacl_allow_secure_custom" {
 variable "tags" {
   type        = map(string)
   description = "Tags applied to all resources"
+  default = {}
 }
