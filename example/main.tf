@@ -13,7 +13,7 @@ module "vpc" {
   enable_nat_gateway = true
   enable_per_az_nat_gateway = true
 
-  nacl_allow_public_custom = [
+  nacl_public_custom = [
     {
       rule_number = 1000
       egress = false
