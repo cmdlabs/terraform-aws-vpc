@@ -102,3 +102,31 @@ resource "aws_network_acl_rule" "public_custom" {
   from_port = var.nacl_public_custom[count.index].from_port
   to_port = var.nacl_public_custom[count.index].to_port
 }
+
+resource "aws_network_acl_rule" "public_allow_http_egress" {
+  count = nacl_allow_all_http ? 1 : 0
+
+  network_acl_id = aws_network_acl.public.id
+
+  rule_number = 1950
+  egress = true
+  protocol = 6
+  rule_action = "allow"
+  cidr_block = "0.0.0.0/0"
+  from_port = 80
+  to_port = 80
+}
+
+resource "aws_network_acl_rule" "public_allow_https_egress" {
+  count = nacl_allow_all_https ? 1 : 0
+
+  network_acl_id = aws_network_acl.public.id
+
+  rule_number = 1951
+  egress = true
+  protocol = 6
+  rule_action = "allow"
+  cidr_block = "0.0.0.0/0"
+  from_port = 443
+  to_port = 443
+}

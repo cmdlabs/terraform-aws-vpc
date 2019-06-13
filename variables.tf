@@ -127,6 +127,18 @@ variable "nacl_allow_all_ephemeral" {
   default = true
 }
 
+variable "nacl_allow_all_http" {
+  type = bool
+  description = "Add a rule to all NACLs allowing http egress"
+  default = true
+}
+
+variable "nacl_allow_all_https" {
+  type = bool
+  description = "Add a rule to all NACLs allowing https egress"
+  default = true
+}
+
 variable "nacl_block_public_to_secure" {
   type = bool
   description = "Block all traffic between public and secure tiers"

@@ -57,6 +57,8 @@ list(object({
 | custom_dhcp_options | Custom DHCP options | object({domain_name = string, domain_name_servers = list(string), ntp_servers = list(string), netbios_name_servers = list(string), netbios_node_type = number}) | `{domain_name = null domain_name_servers = null ntp_servers = null netbios_name_servers = null netbios_node_type = null}` | no |
 | nacl_allow_all_vpc_traffic | Add a rule to all NACLs allowing all traffic to/from the vpc cidr | bool | `true` | no |
 | nacl_allow_all_ephemeral | Add a rule to all NACLs allowing all ephemeral ports | bool | `true` | no |
+| nacl_allow_all_http | Add a rule to all NACLs allowing http egress | bool | `true` | no |
+| nacl_allow_all_https | Add a rule to all NACLs allowing https egress | bool | `true` | no |
 | nacl_block_public_to_secure | Block all traffic between public and secure tiers | bool | `false` | no |
 | nacl_public_custom | List of custom nacls to apply to the public tier | list(object({rule_number = number, egress = bool, protocol = number, rule_action = string, cidr_block = string, from_port = string, to_port = string})) | `null` | no |
 | nacl_private_custom | List of custom nacls to apply to the private tier | list(object({rule_number = number, egress = bool, protocol = number, rule_action = string, cidr_block = string, from_port = string, to_port = string})) | `null` | no |
