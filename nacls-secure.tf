@@ -128,7 +128,7 @@ resource "aws_network_acl_rule" "secure_custom" {
 }
 
 resource "aws_network_acl_rule" "secure_allow_http_egress" {
-  count = nacl_allow_all_http ? 1 : 0
+  count = var.nacl_allow_all_http ? 1 : 0
 
   network_acl_id = aws_network_acl.secure.id
 
@@ -142,7 +142,7 @@ resource "aws_network_acl_rule" "secure_allow_http_egress" {
 }
 
 resource "aws_network_acl_rule" "secure_allow_https_egress" {
-  count = nacl_allow_all_https ? 1 : 0
+  count = var.nacl_allow_all_https ? 1 : 0
 
   network_acl_id = aws_network_acl.secure.id
 
