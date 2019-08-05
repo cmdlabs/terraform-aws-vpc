@@ -89,20 +89,6 @@ resource "aws_network_acl_rule" "private_all_ephemeral_udp_egress" {
   to_port = 65535
 }
 
-resource "aws_network_acl_rule" "private_custom" {
-  count = var.nacl_private_custom != null ? length(var.nacl_private_custom) : 0
-
-  network_acl_id = aws_network_acl.private.id
-
-  rule_number = var.nacl_private_custom[count.index].rule_number
-  egress = var.nacl_private_custom[count.index].egress
-  protocol = var.nacl_private_custom[count.index].protocol
-  rule_action = var.nacl_private_custom[count.index].rule_action
-  cidr_block = var.nacl_private_custom[count.index].cidr_block
-  from_port = var.nacl_private_custom[count.index].from_port
-  to_port = var.nacl_private_custom[count.index].to_port
-}
-
 resource "aws_network_acl_rule" "private_allow_http_egress" {
   count = var.nacl_allow_all_http ? 1 : 0
 
@@ -129,4 +115,18 @@ resource "aws_network_acl_rule" "private_allow_https_egress" {
   cidr_block = "0.0.0.0/0"
   from_port = 443
   to_port = 443
+}
+
+resource "aws_network_acl_rule" "private_custom" {
+  for_each = var.nacl_private_custom
+
+  network_acl_id = aws_network_acl.private.id
+
+  rule_number = each.value.rule_number
+  egress = each.value.egress
+  protocol = each.value.protocol
+  rule_action = each.value.rule_action
+  cidr_block = each.value.cidr_block
+  from_port = each.value.from_port
+  to_port = each.value.to_port
 }

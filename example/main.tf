@@ -13,8 +13,8 @@ module "vpc" {
   enable_nat_gateway = true
   enable_per_az_nat_gateway = true
 
-  nacl_public_custom = [
-    {
+  nacl_public_custom = {
+    allow_https = {
       rule_number = 1000
       egress = false
       protocol = 6
@@ -23,7 +23,25 @@ module "vpc" {
       from_port = 443
       to_port = 443
     }
-  ]
+    allow_http = {
+      rule_number = 1001
+      egress = false
+      protocol = 6
+      rule_action = "allow"
+      cidr_block = "0.0.0.0/0"
+      from_port = 80
+      to_port = 80
+    }
+    allow_ssh = {
+      rule_number = 1002
+      egress = false
+      protocol = 6
+      rule_action = "allow"
+      cidr_block = "0.0.0.0/0"
+      from_port = 22
+      to_port = 22
+    }
+  }
 
   tags = {
     Owner      = "Foo"

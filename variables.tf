@@ -146,47 +146,22 @@ variable "nacl_block_public_to_secure" {
 }
 
 variable "nacl_public_custom" {
-  type = list(object({
-    rule_number = number,
-    egress = bool,
-    protocol = number,
-    rule_action = string,
-    cidr_block = string,
-    from_port = string,
-    to_port = string
-  }))
+  type = map
   description = "List of custom nacls to apply to the public tier"
-  default = null
+  default = {}
 }
 
 variable "nacl_private_custom" {
-  type = list(object({
-    rule_number = number,
-    egress = bool,
-    protocol = number,
-    rule_action = string,
-    cidr_block = string,
-    from_port = string,
-    to_port = string
-  }))
+  type = map
   description = "List of custom nacls to apply to the private tier"
-  default = null
+  default = {}
 }
 
 variable "nacl_secure_custom" {
-  type = list(object({
-    rule_number = number,
-    egress = bool,
-    protocol = number,
-    rule_action = string,
-    cidr_block = string,
-    from_port = string,
-    to_port = string
-  }))
+  type = map
   description = "List of custom nacls to apply to the secure tier"
-  default = null
+  default = {}
 }
-
 
 variable "tags" {
   type        = map(string)
