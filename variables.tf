@@ -149,7 +149,7 @@ variable "nacl_public_custom" {
   type = list(object({
     rule_number = number,
     egress      = bool,
-    protocol    = number,
+    protocol    = any, // can be "tcp" or 6
     rule_action = string,
     cidr_block  = string,
     from_port   = string,
@@ -163,7 +163,7 @@ variable "nacl_private_custom" {
   type = list(object({
     rule_number = number,
     egress      = bool,
-    protocol    = number,
+    protocol    = any,
     rule_action = string,
     cidr_block  = string,
     from_port   = string,
@@ -177,7 +177,7 @@ variable "nacl_secure_custom" {
   type = list(object({
     rule_number = number,
     egress      = bool,
-    protocol    = number,
+    protocol    = any,
     rule_action = string,
     cidr_block  = string,
     from_port   = string,
