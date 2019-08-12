@@ -60,9 +60,9 @@ list(object({
 | nacl_allow_all_http | Add a rule to all NACLs allowing http egress | bool | `true` | no |
 | nacl_allow_all_https | Add a rule to all NACLs allowing https egress | bool | `true` | no |
 | nacl_block_public_to_secure | Block all traffic between public and secure tiers | bool | `false` | no |
-| nacl_public_custom | List of custom nacls to apply to the public tier | list(object({rule_number = number, egress = bool, protocol = number, rule_action = string, cidr_block = string, from_port = string, to_port = string})) | `null` | no |
-| nacl_private_custom | List of custom nacls to apply to the private tier | list(object({rule_number = number, egress = bool, protocol = number, rule_action = string, cidr_block = string, from_port = string, to_port = string})) | `null` | no |
-| nacl_secure_custom | List of custom nacls to apply to the secure tier | list(object({rule_number = number, egress = bool, protocol = number, rule_action = string, cidr_block = string, from_port = string, to_port = string})) | `null` | no |
+| nacl_public_custom | List of custom nacls to apply to the public tier | list(object({rule_number = number, egress = bool, protocol = any, rule_action = string, cidr_block = string, from_port = string, to_port = string})) | `null` | no |
+| nacl_private_custom | List of custom nacls to apply to the private tier | list(object({rule_number = number, egress = bool, protocol = any, rule_action = string, cidr_block = string, from_port = string, to_port = string})) | `null` | no |
+| nacl_secure_custom | List of custom nacls to apply to the secure tier | list(object({rule_number = number, egress = bool, protocol = any, rule_action = string, cidr_block = string, from_port = string, to_port = string})) | `null` | no |
 | tags | Tags applied to all resources | map(string) | `{}` | no |
 
 ## Outputs
@@ -73,4 +73,4 @@ list(object({
 | secure_tier_subnet | Calculated CIDR range of the secure tier |
 
 ## Development
-Most of the terraform ecosystem doesnt yet support 0.12. You need to manually update Inputs/Outputs when you add variables until terraform-docs supports 0.12.
+Most of the terraform ecosystem doesn't yet support 0.12. You need to manually update Inputs/Outputs when you add variables until terraform-docs supports 0.12.
