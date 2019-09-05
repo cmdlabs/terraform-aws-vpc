@@ -28,7 +28,6 @@ resource "aws_vpc_endpoint" "ecr_dkr_endpoint" {
   vpc_endpoint_type = "Interface"
   security_group_ids = ["${aws_security_group.sgforecrendpoint.id}"]
   subnet_ids         = ["${aws_subnet.private[count.index].id}"]
-  private_dns_enabled = true
   tags = {
     Environment = "test",
     Name = "TFVpce1"
@@ -42,7 +41,6 @@ resource "aws_vpc_endpoint" "ecr_api_endpoint" {
   vpc_endpoint_type = "Interface"
   security_group_ids = ["${aws_security_group.sgforecrendpoint.id}"]
   subnet_ids         = ["${aws_subnet.private[count.index].id}"]
-  private_dns_enabled = true
   tags = {
     Environment = "test",
     Name = "TFVpce2"
