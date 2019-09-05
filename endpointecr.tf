@@ -24,7 +24,7 @@ resource "aws_security_group" "sgforecrendpoint" {
 resource "aws_vpc_endpoint" "ecr_dkr_endpoint" {
   count = length(var.availability_zones)
   vpc_id = aws_vpc.main.id
-  service_name = "com.amazonaws.ap-southeast-2.ecr.dkr"
+  service_name = var.service_name_ecr_dkr
   vpc_endpoint_type = "Interface"
   security_group_ids = ["${aws_security_group.sgforecrendpoint.id}"]
   subnet_ids         = ["${aws_subnet.private[count.index].id}"]
@@ -37,7 +37,7 @@ resource "aws_vpc_endpoint" "ecr_dkr_endpoint" {
 resource "aws_vpc_endpoint" "ecr_api_endpoint" {
   count = length(var.availability_zones)
   vpc_id = aws_vpc.main.id
-  service_name = "com.amazonaws.ap-southeast-2.ecr.api"
+  service_name = var.service_name_ecr_api
   vpc_endpoint_type = "Interface"
   security_group_ids = ["${aws_security_group.sgforecrendpoint.id}"]
   subnet_ids         = ["${aws_subnet.private[count.index].id}"]
