@@ -22,12 +22,14 @@ resource "aws_security_group" "sgforecrendpoint" {
 
 
 resource "aws_vpc_endpoint" "ecr_dkr_endpoint" {
-  count = length(var.availability_zones)
-  vpc_id = aws_vpc.main.id
-  service_name = var.service_name_ecr_dkr
-  vpc_endpoint_type = var.vpc_endpoint_type_ecr
-  security_group_ids = ["${aws_security_group.sgforecrendpoint.id}"]
-  subnet_ids         = ["${aws_subnet.private[count.index].id}"]
+  
+  vpc_id              = aws_vpc.main.id
+  service_name        = var.service_name_ecr_dkr
+  vpc_endpoint_type   = var.vpc_endpoint_type_ecr
+  security_group_ids  = ["${aws_security_group.sgforecrendpoint.id}"]
+  #count              = length(var.availability_zones)
+  #subnet_ids          = ["${aws_subnet.private[count.index].id}"]
+  subnet_ids          = aws_subnet.private.*.id
   tags = {
     Environment = "test",
     Name = "TFVpce1"
@@ -35,12 +37,13 @@ resource "aws_vpc_endpoint" "ecr_dkr_endpoint" {
 }
 
 resource "aws_vpc_endpoint" "ecr_api_endpoint" {
-  count = length(var.availability_zones)
-  vpc_id = aws_vpc.main.id
-  service_name = var.service_name_ecr_api
-  vpc_endpoint_type = var.vpc_endpoint_type_ecr
-  security_group_ids = ["${aws_security_group.sgforecrendpoint.id}"]
-  subnet_ids         = ["${aws_subnet.private[count.index].id}"]
+  vpc_id              = aws_vpc.main.id
+  service_name        = var.service_name_ecr_api
+  vpc_endpoint_type   = var.vpc_endpoint_type_ecr
+  security_group_ids  = ["${aws_security_group.sgforecrendpoint.id}"]
+  #count              = length(var.availability_zones)
+  subnet_ids          = aws_subnet.private.*.id
+  #subnet_ids          = 66
   tags = {
     Environment = "test",
     Name = "TFVpce2"
