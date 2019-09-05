@@ -3,24 +3,6 @@ variable "vpc_name" {
   description = "Name that will be prefixed to resources"
 }
 
-variable "service_name_ecr_dkr" {
-  type        = string
-  description = "Service name for endpoint ecr_dkr"
-  default     = "com.amazonaws.ap-southeast-2.ecr.dkr"
-}
-
-variable "service_name_ecr_api" {
-  type        = string
-  description = "Service name for endpoint ecr_api"
-  default     = "com.amazonaws.ap-southeast-2.ecr.api"
-}
-
-variable "vpc_endpoint_type_ecr" {
-  type        = string
-  description = "Service name for endpoint ecr_api"
-  default     = "Interface"
-}
-
 variable "vpc_cidr_block" {
   type        = string
   description = "The CIDR block of the VPC"

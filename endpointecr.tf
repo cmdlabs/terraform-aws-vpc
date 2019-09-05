@@ -24,24 +24,24 @@ resource "aws_security_group" "sgforecrendpoint" {
 resource "aws_vpc_endpoint" "ecr_dkr_endpoint" {
   
   vpc_id              = aws_vpc.main.id
-  service_name        = var.service_name_ecr_dkr
-  vpc_endpoint_type   = var.vpc_endpoint_type_ecr
+  service_name        = "com.amazonaws.${data.aws_region.current.name}.ecr.dkr"
+  vpc_endpoint_type   = "Interface"
   security_group_ids  = ["${aws_security_group.sgforecrendpoint.id}"]
   subnet_ids          = aws_subnet.private.*.id
-  tags = {
-    Environment = "test",
-    Name = "TFVpce1"
-  }
+  tags = merge(
+    { Name = "${var.vpc_name}-ECRendpoint" },
+    var.tags
+  )
 }
 
 resource "aws_vpc_endpoint" "ecr_api_endpoint" {
   vpc_id              = aws_vpc.main.id
-  service_name        = var.service_name_ecr_api
-  vpc_endpoint_type   = var.vpc_endpoint_type_ecr
+  service_name        = "com.amazonaws.${data.aws_region.current.name}.ecr.api"
+  vpc_endpoint_type   = "Interface"
   security_group_ids  = ["${aws_security_group.sgforecrendpoint.id}"]
   subnet_ids          = aws_subnet.private.*.id
-  tags = {
-    Environment = "test",
-    Name = "TFVpce2"
-  }
+  tags = merge(
+    { Name = "${var.vpc_name}-ECRendpoint" },
+    var.tags
+  )
 }
