@@ -27,7 +27,7 @@ resource "aws_vpc_endpoint" "ecr_dkr_endpoint" {
   service_name = "com.amazonaws.ap-southeast-2.ecr.dkr"
   vpc_endpoint_type = "Interface"
   security_group_ids = ["${aws_security_group.sgforecrendpoint.id}"]
-  subnet_ids         = ["${aws_subnet.private[count.index].id}","${aws_subnet.secure[count.index].id}"]
+  subnet_ids         = ["${aws_subnet.private[count.index].id}"]
   private_dns_enabled = true
   tags = {
     Environment = "test",
@@ -41,7 +41,7 @@ resource "aws_vpc_endpoint" "ecr_api_endpoint" {
   service_name = "com.amazonaws.ap-southeast-2.ecr.api"
   vpc_endpoint_type = "Interface"
   security_group_ids = ["${aws_security_group.sgforecrendpoint.id}"]
-  subnet_ids         = ["${aws_subnet.private[count.index].id}","${aws_subnet.secure[count.index].id}"]
+  subnet_ids         = ["${aws_subnet.private[count.index].id}"]
   private_dns_enabled = true
   tags = {
     Environment = "test",
