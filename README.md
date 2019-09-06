@@ -9,6 +9,7 @@ This module deploys a 3-tier VPC. The following resources are managed:
 - NAT Gateways
 - Virtual Private Gateway
 - DHCP Option Sets
+- VPC Endpoints
 
 Tags on VPCs/Subnets are currently set to ignore changes. This is to support EKS clusters.
 
@@ -41,6 +42,7 @@ list(object({
 | vpc_enable_dns_support | Enable VPC DNS Resolver | bool | `true` | no |
 | vpc_enable_dns_hostnames | Enable VPC DNS hostname resolution | bool | `true` | no |
 | availability_zones | List of availability zones | list(string) | n/a | yes |
+| vpc_endpoints | List of VPC endpoints | list(string) | n/a | no |
 | public_tier_newbits | newbits value for calculating the public tier size | number | `2` | no |
 | public_subnet_newbits | newbits value for calculating the public subnet size | number | `2` | no |
 | private_tier_newbits | newbits value for calculating the private tier size | number | `2` | no |

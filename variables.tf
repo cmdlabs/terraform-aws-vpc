@@ -11,6 +11,7 @@ variable "vpc_cidr_block" {
 variable "vpc_endpoints" {
   type        = list(string)
   description = "List of VPC endpoints"
+  default = []
 }
 
 variable "vpc_enable_dns_support" {
