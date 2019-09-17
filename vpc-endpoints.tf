@@ -27,8 +27,20 @@ resource "aws_vpc_endpoint" "vpc_endpoint" {
   vpc_id              = aws_vpc.main.id
   service_name        = "com.amazonaws.${data.aws_region.current.name}.${each.value}"
   vpc_endpoint_type   = "Interface"
+  private_dns_enabled = "true"
   security_group_ids  = [aws_security_group.sgforendpoint.id]
   subnet_ids          = aws_subnet.private.*.id
+  tags = merge(
+    { Name = "${var.vpc_name}-${each.value}-endpoint" },
+    var.tags
+  )
+}
+
+resource "aws_vpc_endpoint" "vpc_gatewayendpoint" {
+  for_each            = toset(var.vpc_gatewayendpoints)
+  vpc_id              = aws_vpc.main.id
+  service_name        = "com.amazonaws.${data.aws_region.current.name}.${each.value}"
+  route_table_ids     = aws_route_table.secure.*.id
   tags = merge(
     { Name = "${var.vpc_name}-${each.value}-endpoint" },
     var.tags

@@ -10,7 +10,13 @@ variable "vpc_cidr_block" {
 
 variable "vpc_endpoints" {
   type        = list(string)
-  description = "List of VPC endpoints"
+  description = "List of VPC Interface endpoints"
+  default = []
+}
+
+variable "vpc_gatewayendpoints" {
+  type        = list(string)
+  description = "List of VPC Gateway endpoints"
   default = []
 }
 
