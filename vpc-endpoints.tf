@@ -40,7 +40,7 @@ resource "aws_vpc_endpoint" "vpc_gatewayendpoint" {
   for_each            = toset(var.vpc_gatewayendpoints)
   vpc_id              = aws_vpc.main.id
   service_name        = "com.amazonaws.${data.aws_region.current.name}.${each.value}"
-  route_table_ids     = aws_route_table.secure.*.id
+  route_table_ids     = aws_route_table.private.*.id
   tags = merge(
     { Name = "${var.vpc_name}-${each.value}-endpoint" },
     var.tags
