@@ -28,7 +28,7 @@ resource "aws_internet_gateway" "main" {
 resource "aws_vpn_gateway" "main" {
   count = var.enable_virtual_private_gateway ? 1 : 0
 
-  vpc_id = aws_vpc.main.id
+  vpc_id          = aws_vpc.main.id
   amazon_side_asn = var.virtual_private_gateway_asn
 
   tags = merge(
@@ -40,7 +40,7 @@ resource "aws_vpn_gateway" "main" {
 resource "aws_nat_gateway" "main" {
   count = var.enable_nat_gateway ? (var.enable_per_az_nat_gateway ? length(var.availability_zones) : 1) : 0
 
-  subnet_id = aws_subnet.public[count.index].id
+  subnet_id     = aws_subnet.public[count.index].id
   allocation_id = aws_eip.main[count.index].id
 
   tags = merge(

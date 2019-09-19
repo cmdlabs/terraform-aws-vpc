@@ -33,175 +33,175 @@ variable "vpc_enable_dns_hostnames" {
 }
 
 variable "availability_zones" {
-  type = list(string)
+  type        = list(string)
   description = "List of availability zones"
 }
 
 variable "public_tier_newbits" {
-  type = number
+  type        = number
   description = "newbits value for calculating the public tier size"
-  default = 2
+  default     = 2
 }
 
 variable "public_subnet_newbits" {
-  type = number
+  type        = number
   description = "newbits value for calculating the public subnet size"
-  default = 2
+  default     = 2
 }
 
 variable "private_tier_newbits" {
-  type = number
+  type        = number
   description = "newbits value for calculating the private tier size"
-  default = 2
+  default     = 2
 }
 
 variable "private_subnet_newbits" {
-  type = number
+  type        = number
   description = "newbits value for calculating the private subnet size"
-  default = 2
+  default     = 2
 }
 
 variable "secure_tier_newbits" {
-  type = number
+  type        = number
   description = "newbits value for calculating the secure tier size"
-  default = 2
+  default     = 2
 }
 
 variable "secure_subnet_newbits" {
-  type = number
+  type        = number
   description = "newbits value for calculating the secure subnet size"
-  default = 2
+  default     = 2
 }
 
 variable "enable_internet_gateway" {
-  type = bool
+  type        = bool
   description = "Attach an internet gateway to the VPC"
-  default = true
+  default     = true
 }
 
 variable "enable_nat_gateway" {
-  type = bool
+  type        = bool
   description = "Create nat gateways in the VPC,"
-  default = true
+  default     = true
 }
 
 variable "enable_per_az_nat_gateway" {
-  type = bool
+  type        = bool
   description = "Create 1 nat gateway per AZ"
-  default = true
+  default     = true
 }
 
 variable "enable_virtual_private_gateway" {
-  type = bool
+  type        = bool
   description = "Attach a virtual private gateway to the VPC"
-  default = false
+  default     = false
 }
 
 variable "virtual_private_gateway_asn" {
-  type = number
+  type        = number
   description = "ASN for the Amazon side of the VPG"
-  default = 64512
+  default     = 64512
 }
 
 variable "enable_custom_dhcp_options" {
-  type = bool
+  type        = bool
   description = "Enable custom DHCP options, you must specify custom_dhcp_options"
-  default = false
+  default     = false
 }
 
 variable "custom_dhcp_options" {
   type = object({
-    domain_name = string,
-    domain_name_servers = list(string),
-    ntp_servers = list(string),
+    domain_name          = string,
+    domain_name_servers  = list(string),
+    ntp_servers          = list(string),
     netbios_name_servers = list(string),
-    netbios_node_type = number
+    netbios_node_type    = number
   })
   description = "Custom DHCP options"
   default = {
-    domain_name = null
-    domain_name_servers = null
-    ntp_servers = null
+    domain_name          = null
+    domain_name_servers  = null
+    ntp_servers          = null
     netbios_name_servers = null
-    netbios_node_type = null
+    netbios_node_type    = null
   }
 }
 
 variable "nacl_allow_all_vpc_traffic" {
-  type = bool
+  type        = bool
   description = "Add a rule to all NACLs allowing all traffic to/from the vpc cidr"
-  default = true
+  default     = true
 }
 
 variable "nacl_allow_all_ephemeral" {
-  type = bool
+  type        = bool
   description = "Add a rule to all NACLs allowing all ephemeral ports"
-  default = true
+  default     = true
 }
 
 variable "nacl_allow_all_http" {
-  type = bool
+  type        = bool
   description = "Add a rule to all NACLs allowing http egress"
-  default = true
+  default     = true
 }
 
 variable "nacl_allow_all_https" {
-  type = bool
+  type        = bool
   description = "Add a rule to all NACLs allowing https egress"
-  default = true
+  default     = true
 }
 
 variable "nacl_block_public_to_secure" {
-  type = bool
+  type        = bool
   description = "Block all traffic between public and secure tiers"
-  default = false
+  default     = false
 }
 
 variable "nacl_public_custom" {
   type = list(object({
     rule_number = number,
-    egress = bool,
-    protocol = number,
+    egress      = bool,
+    protocol    = any, // can be "tcp" or 6
     rule_action = string,
-    cidr_block = string,
-    from_port = string,
-    to_port = string
+    cidr_block  = string,
+    from_port   = string,
+    to_port     = string
   }))
   description = "List of custom nacls to apply to the public tier"
-  default = null
+  default     = null
 }
 
 variable "nacl_private_custom" {
   type = list(object({
     rule_number = number,
-    egress = bool,
-    protocol = number,
+    egress      = bool,
+    protocol    = any,
     rule_action = string,
-    cidr_block = string,
-    from_port = string,
-    to_port = string
+    cidr_block  = string,
+    from_port   = string,
+    to_port     = string
   }))
   description = "List of custom nacls to apply to the private tier"
-  default = null
+  default     = null
 }
 
 variable "nacl_secure_custom" {
   type = list(object({
     rule_number = number,
-    egress = bool,
-    protocol = number,
+    egress      = bool,
+    protocol    = any,
     rule_action = string,
-    cidr_block = string,
-    from_port = string,
-    to_port = string
+    cidr_block  = string,
+    from_port   = string,
+    to_port     = string
   }))
   description = "List of custom nacls to apply to the secure tier"
-  default = null
+  default     = null
 }
 
 
 variable "tags" {
   type        = map(string)
   description = "Tags applied to all resources"
-  default = {}
+  default     = {}
 }

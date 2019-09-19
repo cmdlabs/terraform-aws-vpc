@@ -15,10 +15,10 @@ resource "aws_network_acl_rule" "public_all_vpc_traffic_ingress" {
   network_acl_id = aws_network_acl.public.id
 
   rule_number = 651
-  egress = false
-  protocol = -1
+  egress      = false
+  protocol    = -1
   rule_action = "allow"
-  cidr_block = var.vpc_cidr_block
+  cidr_block  = var.vpc_cidr_block
 }
 
 resource "aws_network_acl_rule" "public_all_vpc_traffic_egress" {
@@ -27,10 +27,10 @@ resource "aws_network_acl_rule" "public_all_vpc_traffic_egress" {
   network_acl_id = aws_network_acl.public.id
 
   rule_number = 651
-  egress = true
-  protocol = -1
+  egress      = true
+  protocol    = -1
   rule_action = "allow"
-  cidr_block = var.vpc_cidr_block
+  cidr_block  = var.vpc_cidr_block
 }
 
 resource "aws_network_acl_rule" "public_all_ephemeral_tcp_ingress" {
@@ -39,12 +39,12 @@ resource "aws_network_acl_rule" "public_all_ephemeral_tcp_ingress" {
   network_acl_id = aws_network_acl.public.id
 
   rule_number = 2051
-  egress = false
-  protocol = 6
+  egress      = false
+  protocol    = 6
   rule_action = "allow"
-  cidr_block = "0.0.0.0/0"
-  from_port = 1024
-  to_port = 65535
+  cidr_block  = "0.0.0.0/0"
+  from_port   = 1024
+  to_port     = 65535
 }
 
 resource "aws_network_acl_rule" "public_all_ephemeral_tcp_egress" {
@@ -53,12 +53,12 @@ resource "aws_network_acl_rule" "public_all_ephemeral_tcp_egress" {
   network_acl_id = aws_network_acl.public.id
 
   rule_number = 2051
-  egress = true
-  protocol = 6
+  egress      = true
+  protocol    = 6
   rule_action = "allow"
-  cidr_block = "0.0.0.0/0"
-  from_port = 1024
-  to_port = 65535
+  cidr_block  = "0.0.0.0/0"
+  from_port   = 1024
+  to_port     = 65535
 }
 
 resource "aws_network_acl_rule" "public_all_ephemeral_udp_ingress" {
@@ -67,12 +67,12 @@ resource "aws_network_acl_rule" "public_all_ephemeral_udp_ingress" {
   network_acl_id = aws_network_acl.public.id
 
   rule_number = 2052
-  egress = false
-  protocol = 17
+  egress      = false
+  protocol    = 17
   rule_action = "allow"
-  cidr_block = "0.0.0.0/0"
-  from_port = 1024
-  to_port = 65535
+  cidr_block  = "0.0.0.0/0"
+  from_port   = 1024
+  to_port     = 65535
 }
 
 resource "aws_network_acl_rule" "public_all_ephemeral_udp_egress" {
@@ -81,12 +81,12 @@ resource "aws_network_acl_rule" "public_all_ephemeral_udp_egress" {
   network_acl_id = aws_network_acl.public.id
 
   rule_number = 2052
-  egress = true
-  protocol = 17
+  egress      = true
+  protocol    = 17
   rule_action = "allow"
-  cidr_block = "0.0.0.0/0"
-  from_port = 1024
-  to_port = 65535
+  cidr_block  = "0.0.0.0/0"
+  from_port   = 1024
+  to_port     = 65535
 }
 
 resource "aws_network_acl_rule" "public_custom" {
@@ -95,12 +95,12 @@ resource "aws_network_acl_rule" "public_custom" {
   network_acl_id = aws_network_acl.public.id
 
   rule_number = var.nacl_public_custom[count.index].rule_number
-  egress = var.nacl_public_custom[count.index].egress
-  protocol = var.nacl_public_custom[count.index].protocol
+  egress      = var.nacl_public_custom[count.index].egress
+  protocol    = var.nacl_public_custom[count.index].protocol
   rule_action = var.nacl_public_custom[count.index].rule_action
-  cidr_block = var.nacl_public_custom[count.index].cidr_block
-  from_port = var.nacl_public_custom[count.index].from_port
-  to_port = var.nacl_public_custom[count.index].to_port
+  cidr_block  = var.nacl_public_custom[count.index].cidr_block
+  from_port   = var.nacl_public_custom[count.index].from_port
+  to_port     = var.nacl_public_custom[count.index].to_port
 }
 
 resource "aws_network_acl_rule" "public_allow_http_egress" {
@@ -109,12 +109,12 @@ resource "aws_network_acl_rule" "public_allow_http_egress" {
   network_acl_id = aws_network_acl.public.id
 
   rule_number = 1950
-  egress = true
-  protocol = 6
+  egress      = true
+  protocol    = 6
   rule_action = "allow"
-  cidr_block = "0.0.0.0/0"
-  from_port = 80
-  to_port = 80
+  cidr_block  = "0.0.0.0/0"
+  from_port   = 80
+  to_port     = 80
 }
 
 resource "aws_network_acl_rule" "public_allow_https_egress" {
@@ -123,10 +123,10 @@ resource "aws_network_acl_rule" "public_allow_https_egress" {
   network_acl_id = aws_network_acl.public.id
 
   rule_number = 1951
-  egress = true
-  protocol = 6
+  egress      = true
+  protocol    = 6
   rule_action = "allow"
-  cidr_block = "0.0.0.0/0"
-  from_port = 443
-  to_port = 443
+  cidr_block  = "0.0.0.0/0"
+  from_port   = 443
+  to_port     = 443
 }
