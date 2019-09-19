@@ -4,7 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.1] 2019-09-19
+### Fixed
+- Fix the versions required to use this module
+
 ## [0.5.0] 2019-09-19
+### Added
 - Allow the `protocol` option in NACL rules to use either string or number
 
 ## [0.4.1] 2019-09-18
