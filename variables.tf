@@ -8,6 +8,18 @@ variable "vpc_cidr_block" {
   description = "The CIDR block of the VPC"
 }
 
+variable "vpc_endpoints" {
+  type        = list(string)
+  description = "List of VPC Interface endpoints"
+  default = []
+}
+
+variable "vpc_gatewayendpoints" {
+  type        = list(string)
+  description = "List of VPC Gateway endpoints"
+  default = []
+}
+
 variable "vpc_enable_dns_support" {
   type        = bool
   description = "Enable VPC DNS resolver"
