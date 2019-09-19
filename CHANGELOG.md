@@ -18,7 +18,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.3.0] 2019-09-12
 ### Added
 - Add feature to enable VPC endpoints
->>>>>>> 0e72a1809cf262ce640161b346478729871a7a79
 
 ## [0.2.0] 2019-06-12
 - Add `nacl_allow_all_http` and `nacl_allow_all_https` to add http/https egress rules to all NACLs
